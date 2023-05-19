@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Security.Cryptography.X509Certificates;
 using Chessboard;
 
 namespace ChessConsole
@@ -9,7 +10,8 @@ namespace ChessConsole
         {
             for(int i = 0; i < board.Rows; i++)
             {
-                for(int j = 0; j < board.Columns; j++)
+                Console.Write(8 - i + " ");
+                for (int j = 0; j < board.Columns; j++)
                 {
                     if(board.ChessPiece(i, j) == null)
                     {
@@ -17,12 +19,29 @@ namespace ChessConsole
                     }
                     else
                     {
-                        Console.Write(board.ChessPiece(i, j) + " ");
+                        PrintPiece(board.ChessPiece(i, j));
+                        Console.Write(" ");
                     }                    
                 }
-
                 Console.WriteLine();
             }
+            Console.WriteLine("  a b c d e f g h");
+            
         }
+
+        public static void PrintPiece(Piece piece)
+            {
+                if (piece.Color == Color.White)
+                {
+                    Console.Write(piece);
+                }
+                else
+                {
+                    ConsoleColor aux = Console.ForegroundColor;
+                    Console.ForegroundColor = ConsoleColor.Yellow;
+                    Console.Write(piece);
+                    Console.ForegroundColor = aux;
+                }
+            }
     }
 }
