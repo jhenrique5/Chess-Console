@@ -4,13 +4,18 @@
     {
         public int Rows { get; set; }
         public int Columns { get; set; }
-        private ChessPiece[,] Pieces;
+        private Piece[,] Pieces;
 
         public Board(int rows, int columns)
         {
             Rows = rows;
             Columns = columns;
-            Pieces = new ChessPiece[rows, columns];
+            Pieces = new Piece[rows, columns];
+        }
+
+        public Piece AddPiece(int row, int column)
+        {
+            return Pieces[row, column];
         }
     }
 }
