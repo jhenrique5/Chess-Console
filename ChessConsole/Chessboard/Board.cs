@@ -13,9 +13,15 @@
             Pieces = new Piece[rows, columns];
         }
 
-        public Piece AddPiece(int row, int column)
+        public Piece ChessPiece(int row, int column)
         {
             return Pieces[row, column];
+        }
+
+        public void AddPiece(Piece p, Position pos)
+        {
+            Pieces[pos.Row, pos.Column] = p;
+            p.Position = pos;
         }
     }
 }
