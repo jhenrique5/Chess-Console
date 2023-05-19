@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ChessConsole.Chessboard
+﻿namespace Chessboard
 {
-    internal class ChessboardException
+    class ChessboardException : ApplicationException
     {
+        public ChessboardException(string message) : base(message)
+        {
+        }
     }
 }
