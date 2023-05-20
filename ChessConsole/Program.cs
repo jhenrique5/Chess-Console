@@ -10,17 +10,23 @@ namespace ChessConsole
         {
             try
             {
-                Board board = new Board(8, 8);
+                ChessMatch match = new ChessMatch();
 
-                board.AddPiece(new Rook(board, Color.Black), new Position(0, 0));
-                board.AddPiece(new Rook(board, Color.Black), new Position(1, 3));
-                board.AddPiece(new King(board, Color.Black), new Position(0, 2));
+                while (!match.Finished)
+                {
+                    Console.Clear();
+                    Screen.PrintBoard(match.Board);
 
-                board.AddPiece(new Rook(board, Color.White), new Position(3, 5));
+                    Console.WriteLine();
+                    Console.Write("Origin: ");
+                    Position origin = Screen.ReadChessPosition().ToPosition();
+                    Console.Write("Destination: ");
+                    Position destination = Screen.ReadChessPosition().ToPosition();
 
+                    match.MakeMove(origin, destination);
+                }
 
-
-                Screen.PrintBoard(board);
+                
             }
             catch (ChessboardException e)
             {
