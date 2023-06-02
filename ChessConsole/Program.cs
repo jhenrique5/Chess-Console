@@ -16,6 +16,9 @@ namespace ChessConsole
                 {
                     Console.Clear();
                     Screen.PrintBoard(match.Board);
+                    Console.WriteLine();
+                    Console.WriteLine("Turn: " + match.Turn);
+                    Console.WriteLine("Waiting for move: " + match.CurrentPlayer);
 
                     Console.WriteLine();
                     Console.Write("Origin: ");
@@ -30,7 +33,7 @@ namespace ChessConsole
                     Console.Write("Destination: ");
                     Position destination = Screen.ReadChessPosition().ToPosition();
 
-                    match.MakeMove(origin, destination);
+                    match.ExecuteMovement(origin, destination);
                 }
 
                 

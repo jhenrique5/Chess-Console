@@ -6,8 +6,8 @@ namespace Chess
     class ChessMatch
     {
         public Board Board { get; private set; }
-        private int Turn;
-        private Color CurrentPlayer;
+        public int Turn { get; private set; }
+        public Color CurrentPlayer { get; private set; }
         public bool Finished { get; private set; }
 
         public ChessMatch()
@@ -25,6 +25,25 @@ namespace Chess
             p.IncrementNumberOfMoves();
             Piece capturedPiece = Board.RemovePiece(destination);
             Board.AddPiece(p, destination);
+        }
+
+        public void ExecuteMovement(Position origin, Position destination)
+        {
+            MakeMove(origin, destination);
+            Turn++;
+            SwitchPlayer();
+        }
+
+        private void SwitchPlayer()
+        {
+            if (CurrentPlayer == Color.White)
+            {
+                CurrentPlayer = Color.Black;
+            }
+            else
+            {
+                CurrentPlayer = Color.White;
+            }
         }
 
         private void AddPieces()
