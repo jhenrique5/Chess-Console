@@ -34,6 +34,31 @@ namespace Chess
             SwitchPlayer();
         }
 
+        public void ValidateOriginPosition(Position pos)
+        {
+            if (Board.ChessPiece(pos) == null)
+            {
+                throw new ChessboardException("There is no piece at the selected origin position!");
+            }
+            if (CurrentPlayer != Board.ChessPiece(pos).Color)
+            {
+                throw new ChessboardException("The selected origin piece is not yours!");
+            }
+            if (!Board.ChessPiece(pos).HasPossibleMoves())
+            {
+                throw new ChessboardException("There are no possible moves for the selected source piece!");
+            }
+        }
+
+        public void ValidateDestinationPosition(Position origin, Position destination)
+        {
+            if (!Board.ChessPiece(origin).CanMoveTo(destination))
+            {
+                throw new ChessboardException("Invalid destination position!");
+            }
+
+        }
+
         private void SwitchPlayer()
         {
             if (CurrentPlayer == Color.White)
